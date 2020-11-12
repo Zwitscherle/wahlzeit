@@ -103,7 +103,13 @@ public class Photo extends DataObject {
 	 * 
 	 */
 	protected long creationTime = System.currentTimeMillis();
-	
+
+	/**
+	 * A photo can have a Location
+	 */
+	public Location location;
+
+
 	/**
 	 * 
 	 */
@@ -118,6 +124,9 @@ public class Photo extends DataObject {
 	 */
 	public Photo(PhotoId myId) {
 		id = myId;
+		// TODO just for test delete this afterwards and ask in forum
+		Coordinate testCoordinate = new Coordinate(0.0, 0.0, 0.0);
+		this.location = new Location(testCoordinate);
 		
 		incWriteCount();
 	}
@@ -477,5 +486,5 @@ public class Photo extends DataObject {
 	public long getCreationTime() {
 		return creationTime;
 	}
-	
+
 }
