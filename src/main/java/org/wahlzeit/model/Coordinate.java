@@ -1,10 +1,23 @@
 package org.wahlzeit.model;
 
+import org.wahlzeit.services.Persistent;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * Coordinate represents the coordinates of a location object
  */
-public class Coordinate {
+public class Coordinate implements Persistent {
 
+    // TODO handle ids correctly
+    /**
+     *
+     */
+    protected transient int writeCount = 0;
+
+    private int id = 0;
     private double xCoordinate;
     private double yCoordinate;
     private double zCoordinate;
@@ -13,10 +26,25 @@ public class Coordinate {
      *
      * @methodtype constructor
      */
+    public Coordinate() {
+        // TODO replace with coordinate nextId
+//        id = PhotoId.getNextId();
+        incWriteCount();
+    }
+
+    /**
+     *
+     */
+    public Coordinate(int id) {
+        id = id;
+    }
+
+    /**
+     *
+     * @methodtype constructor
+     */
     public Coordinate(double xCoordinate, double yCoordinate, double zCoordinate) {
-        this.xCoordinate = xCoordinate;
-        this.yCoordinate = yCoordinate;
-        this.zCoordinate = zCoordinate;
+        this.id += 1;
     }
 
     /**
@@ -92,4 +120,42 @@ public class Coordinate {
         return distance;
     }
 
+    @Override
+    public boolean isDirty() {
+        return false;
+    }
+
+    @Override
+    public void incWriteCount() {
+        writeCount++;
+    }
+
+    @Override
+    public void resetWriteCount() {
+
+    }
+
+    @Override
+    public String getIdAsString() {
+        return null;
+    }
+
+    @Override
+    public void readFrom(ResultSet rset) throws SQLException {
+        xCoordinate = rset.getDouble("x_coordinate");
+        yCoordinate = rset.getDouble("y_coordinate");
+        zCoordinate = rset.getDouble("z_coordinate");
+    }
+
+    @Override
+    public void writeOn(ResultSet rset) throws SQLException {
+        rset.updateDouble("x_coordinate", xCoordinate);
+        rset.updateDouble("y_coordinate", yCoordinate);
+        rset.updateDouble("z_coordinate", zCoordinate);
+    }
+
+    @Override
+    public void writeId(PreparedStatement stmt, int pos) throws SQLException {
+
+    }
 }

@@ -107,6 +107,7 @@ public class Photo extends DataObject {
 	/**
 	 * A photo can have a Location
 	 */
+	protected int location_id;
 	public Location location;
 
 
@@ -124,10 +125,9 @@ public class Photo extends DataObject {
 	 */
 	public Photo(PhotoId myId) {
 		id = myId;
-		// TODO just for test delete this afterwards and ask in forum
-		Coordinate testCoordinate = new Coordinate(0.0, 0.0, 0.0);
-		this.location = new Location(testCoordinate);
-		
+		// set default location
+		this.location = new Location();
+
 		incWriteCount();
 	}
 	
@@ -172,6 +172,13 @@ public class Photo extends DataObject {
 
 		creationTime = rset.getLong("creation_time");
 
+		// TODO get location from the given id
+		location_id = rset.getInt("location_id");
+		location = LocationManager.instance.getLocationById(location_id);
+		System.out.println("test get location from database");
+		System.out.println(location.coordinate.getxCoordinate());
+		// location = read location from database
+
 		maxPhotoSize = PhotoSize.getFromWidthHeight(width, height);
 	}
 	
@@ -192,7 +199,8 @@ public class Photo extends DataObject {
 		rset.updateInt("status", status.asInt());
 		rset.updateInt("praise_sum", praiseSum);
 		rset.updateInt("no_votes", noVotes);
-		rset.updateLong("creation_time", creationTime);		
+		rset.updateLong("creation_time", creationTime);
+		rset.updateInt("location_id", location_id);
 	}
 
 	/**
