@@ -78,7 +78,7 @@ public class Coordinate {
         Double x2 = this.xCoordinate;
         Double y2 = this.yCoordinate;
         Double z2 = this.zCoordinate;
-        return (x.equals(x2) && y.equals(y2) && z.equals(z2));
+        return (x.compareTo(x2) == 0 && y.compareTo(y2) == 0 && z.compareTo(z2) == 0);
     }
 
     /**
