@@ -33,9 +33,9 @@ import org.wahlzeit.services.*;
 public class PhotoManager extends ObjectManager {
 	
 	/**
-	 * 
+	 * TODO is this ok? I just use the FoodPhotoManager, because other wise there is now way to distinguish Photos from FoodPhotos...
 	 */
-	protected static final PhotoManager instance = new PhotoManager();
+	protected static final PhotoManager instance = new FoodPhotoManager();
 
 	/**
 	 * In-memory cache for photos
@@ -132,16 +132,16 @@ public class PhotoManager extends ObjectManager {
 	
 	/**
 	 *  TODO this should be dependent on the result set if we create a normal Photo or a FoodPhoto, there is no way to do so currently (or something like that)
-	 *  This looks like really bad practice, but i have no idea how this should work differently without any big chances to other classes...
-	 *  Alternative would be to make all Photos FoodPhotos, but is this wat we want?
+	 *
 	 */
 	protected Photo createObject(ResultSet rset) throws SQLException {
-		System.out.println("create Photo Object");
-		if (rset.getString("foodName") != null) {
-			return FoodPhotoFactory.getInstance().createPhoto(rset);
-		} else {
-			return PhotoFactory.getInstance().createPhoto(rset);
-		}
+		return PhotoFactory.getInstance().createPhoto(rset);
+//		TODO This would be an alternative solution if we do not use the foodPhotoManager in this class
+//		if (rset.getString("foodName") != null) {
+//			return FoodPhotoFactory.getInstance().createPhoto(rset);
+//		} else {
+//			return PhotoFactory.getInstance().createPhoto(rset);
+//		}
 	}
 	
 	/**
