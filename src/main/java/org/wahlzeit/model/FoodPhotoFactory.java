@@ -2,6 +2,9 @@ package org.wahlzeit.model;
 
 import org.wahlzeit.services.SysLog;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class FoodPhotoFactory extends PhotoFactory {
 
     /**
@@ -10,22 +13,22 @@ public class FoodPhotoFactory extends PhotoFactory {
     private static FoodPhotoFactory instance = null;
 
     /**
-     * Public singleton access method. TODO needed?
+     * Override public singleton access method. Initialize as FoodPhotoFactory.
      */
     public static synchronized FoodPhotoFactory getInstance() {
         if (instance == null) {
-            SysLog.logSysInfo("setting generic PhotoFactory");
+            SysLog.logSysInfo("setting generic FoodPhotoFactory");
             setInstance(new FoodPhotoFactory());
         }
         return instance;
     }
 
     /**
-     * Method to set the singleton instance of PhotoFactory.
+     * Method to set the singleton instance of FoodPhotoFactory.
      */
     protected static synchronized void setInstance(FoodPhotoFactory foodPhotoFactory) {
         if (instance != null) {
-            throw new IllegalStateException("attempt to initialize PhotoFactory twice");
+            throw new IllegalStateException("attempt to initialize FoodPhotoFactory twice");
         }
         instance = foodPhotoFactory;
     }
@@ -41,28 +44,37 @@ public class FoodPhotoFactory extends PhotoFactory {
      *
      */
     protected FoodPhotoFactory() {
-        super();
     }
 
     /**
      * @methodtype factory
      */
-    public FoodPhoto createFoodPhoto() {
+    @Override
+    public FoodPhoto createPhoto() {
         return new FoodPhoto();
     }
 
     /**
      * @methodtype factory
      */
-    public FoodPhoto createFoodPhoto(PhotoId id) {
+    @Override
+    public FoodPhoto createPhoto(PhotoId id) {
         return new FoodPhoto(id);
     }
 
     /**
      * @methodtype factory
      */
-    public FoodPhoto createFoodPhoto(Food food) {
+    public FoodPhoto createPhoto(Food food) {
         return new FoodPhoto(food);
+    }
+
+    /**
+     * @methodtype factory
+     */
+    @Override
+    public FoodPhoto createPhoto(ResultSet rs) throws SQLException {
+        return new FoodPhoto(rs);
     }
 
 }

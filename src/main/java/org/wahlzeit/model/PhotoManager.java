@@ -131,10 +131,17 @@ public class PhotoManager extends ObjectManager {
 	}
 	
 	/**
-	 * 
+	 *  TODO this should be dependent on the result set if we create a normal Photo or a FoodPhoto, there is no way to do so currently (or something like that)
+	 *  This looks like really bad practice, but i have no idea how this should work differently without any big chances to other classes...
+	 *  Alternative would be to make all Photos FoodPhotos, but is this wat we want?
 	 */
 	protected Photo createObject(ResultSet rset) throws SQLException {
-		return PhotoFactory.getInstance().createPhoto(rset);
+		System.out.println("create Photo Object");
+		if (rset.getString("foodName") != null) {
+			return FoodPhotoFactory.getInstance().createPhoto(rset);
+		} else {
+			return PhotoFactory.getInstance().createPhoto(rset);
+		}
 	}
 	
 	/**

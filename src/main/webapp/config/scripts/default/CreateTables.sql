@@ -30,9 +30,13 @@ CREATE TABLE photos (
 	praise_sum integer,
 	no_votes integer,
 	creation_time bigint,
-	x_coordinate double precision,
-	y_coordinate double precision,
-	z_coordinate double precision
+	x double precision,
+	y double precision,
+	z double precision,
+	foodName text,
+    price double precision,
+    vegetarian boolean,
+    vendor text
 );
 
 CREATE TABLE tags (

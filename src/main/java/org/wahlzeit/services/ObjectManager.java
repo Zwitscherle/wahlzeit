@@ -62,9 +62,9 @@ public abstract class ObjectManager {
 		SysLog.logQuery(stmt);
 		ResultSet rset = stmt.executeQuery();
 		if (rset.next()) {
+			// always calls the normal photo class at the moment
 			result = createObject(rset);
 		}
-
 		return result;
 	}
 	

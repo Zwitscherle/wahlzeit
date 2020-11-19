@@ -168,10 +168,10 @@ public class Photo extends DataObject {
 
 		creationTime = rset.getLong("creation_time");
 
-		double x_coordinate = rset.getDouble("x_coordinate");
-		double y_coordinate = rset.getDouble("y_coordinate");
-		double z_coordinate = rset.getDouble("z_coordinate");
-		Coordinate coordinate = new Coordinate(x_coordinate, y_coordinate, z_coordinate);
+		double x = rset.getDouble("x");
+		double y = rset.getDouble("y");
+		double z = rset.getDouble("z");
+		Coordinate coordinate = new Coordinate(x, y, z);
 		location = new Location(coordinate);
 
 		maxPhotoSize = PhotoSize.getFromWidthHeight(width, height);
@@ -196,9 +196,9 @@ public class Photo extends DataObject {
 		rset.updateInt("no_votes", noVotes);
 		rset.updateLong("creation_time", creationTime);
 		if (location != null) {
-			rset.updateDouble("x_coordinate", location.coordinate.getxCoordinate());
-			rset.updateDouble("y_coordinate", location.coordinate.getyCoordinate());
-			rset.updateDouble("z_coordinate", location.coordinate.getzCoordinate());
+			rset.updateDouble("x", location.coordinate.getX());
+			rset.updateDouble("y", location.coordinate.getY());
+			rset.updateDouble("z", location.coordinate.getZ());
 		}
 	}
 

@@ -47,6 +47,7 @@ public abstract class ModelMain extends AbstractMain {
  		loadGlobals();
 
 		PhotoFactory.initialize();
+		FoodPhotoFactory.initialize();
 	}
 	
 	/**
@@ -91,7 +92,7 @@ public abstract class ModelMain extends AbstractMain {
 		long confirmationCode = userManager.createConfirmationCode();
 		User user = new User(userName, password, emailAddress, confirmationCode);
 		userManager.addUser(user);
-		
+
 		PhotoManager photoManager = PhotoManager.getInstance();
 		File photoDirFile = new File(photoDir);
 		FileFilter photoFileFilter = new FileFilter() {
