@@ -131,7 +131,6 @@ public class PhotoManager extends ObjectManager {
 	}
 	
 	/**
-	 *  TODO this should be dependent on the result set if we create a normal Photo or a FoodPhoto, there is no way to do so currently (or something like that)
 	 *
 	 */
 	protected Photo createObject(ResultSet rset) throws SQLException {

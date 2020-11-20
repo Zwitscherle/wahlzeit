@@ -4,7 +4,6 @@ package org.wahlzeit.model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// TODO never used this way
 public class FoodPhotoManager extends PhotoManager {
 
     /**
