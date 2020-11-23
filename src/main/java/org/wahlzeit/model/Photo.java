@@ -171,7 +171,7 @@ public class Photo extends DataObject {
 		double x = rset.getDouble("x");
 		double y = rset.getDouble("y");
 		double z = rset.getDouble("z");
-		Coordinate coordinate = new Coordinate(x, y, z);
+		CartesianCoordinate coordinate = new CartesianCoordinate(x, y, z);
 		location = new Location(coordinate);
 
 		maxPhotoSize = PhotoSize.getFromWidthHeight(width, height);
