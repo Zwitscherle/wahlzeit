@@ -33,6 +33,7 @@ CREATE TABLE photos (
 	x double precision,
 	y double precision,
 	z double precision,
+	spheric boolean,
 	foodName text,
     price double precision,
     vegetarian boolean,

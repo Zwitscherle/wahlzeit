@@ -6,13 +6,13 @@ package org.wahlzeit.model;
  */
 public class Location {
 
-    public CartesianCoordinate coordinate;
+    public Coordinate coordinate;
 
     /**
      *
      * @methodtype constructor
      */
-    public Location(CartesianCoordinate coordinate) {
+    public Location(Coordinate coordinate) {
         this.coordinate = coordinate;
     }
 

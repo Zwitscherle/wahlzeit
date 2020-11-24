@@ -26,6 +26,19 @@ public class CartesianCoordinateTest extends TestCase {
     }
 
     @Test
+    public void testAsSphericCoordinate() {
+        CartesianCoordinate one = new CartesianCoordinate(1,2, 3);
+
+        SphericCoordinate two = one.asSphericCoordinate();
+        SphericCoordinate expected = new SphericCoordinate(1.107148,0.640522, 3.741657);
+
+        assertEquals(expected.getPhi(), two.getPhi(), 0.000001);
+        assertEquals(expected.getTheta(), two.getTheta(), 0.000001);
+        assertEquals(expected.getRadius(), two.getRadius(), 0.000001);
+    }
+
+
+    @Test
     public void testGetCartesianDistance() {
         CartesianCoordinate one = new CartesianCoordinate(1,1, 1);
         CartesianCoordinate two = new CartesianCoordinate(2,2,2);
@@ -34,6 +47,17 @@ public class CartesianCoordinateTest extends TestCase {
         double correctValue = Math.sqrt(3);
 
         assertEquals(correctValue, distance, 0.000001);
+    }
+
+    @Test
+    public void testGetCentralAngle() {
+        CartesianCoordinate one = new CartesianCoordinate(1,1,0);
+        CartesianCoordinate two = new CartesianCoordinate(-1,1,0 );
+
+        double angle = one.getCentralAngle(two);
+        double correctValue = 90;
+
+        assertEquals(correctValue, angle, 0.1);
     }
 
 }

@@ -168,12 +168,17 @@ public class Photo extends DataObject {
 
 		creationTime = rset.getLong("creation_time");
 
+		boolean isSpheric = rset.getBoolean("spheric");
 		double x = rset.getDouble("x");
 		double y = rset.getDouble("y");
 		double z = rset.getDouble("z");
-		CartesianCoordinate coordinate = new CartesianCoordinate(x, y, z);
-		location = new Location(coordinate);
-
+		CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(x, y, z);
+		if (isSpheric) {
+			SphericCoordinate sphericCoordinate = cartesianCoordinate.asSphericCoordinate();
+			location = new Location(sphericCoordinate);
+		} else {
+			location = new Location(cartesianCoordinate);
+		}
 		maxPhotoSize = PhotoSize.getFromWidthHeight(width, height);
 	}
 	
@@ -196,9 +201,15 @@ public class Photo extends DataObject {
 		rset.updateInt("no_votes", noVotes);
 		rset.updateLong("creation_time", creationTime);
 		if (location != null) {
-			rset.updateDouble("x", location.coordinate.getX());
-			rset.updateDouble("y", location.coordinate.getY());
-			rset.updateDouble("z", location.coordinate.getZ());
+			if (location.coordinate.getClass() == CartesianCoordinate.class) {
+				rset.updateBoolean("spheric", false);
+			} else {
+				rset.updateBoolean("spheric", true);
+			}
+			CartesianCoordinate coordinate = location.coordinate.asCartesianCoordinate();
+			rset.updateDouble("x", coordinate.getX());
+			rset.updateDouble("y", coordinate.getY());
+			rset.updateDouble("z", coordinate.getZ());
 		}
 	}
 

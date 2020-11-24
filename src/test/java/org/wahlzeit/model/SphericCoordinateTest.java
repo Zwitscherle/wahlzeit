@@ -26,6 +26,21 @@ public class SphericCoordinateTest extends TestCase {
     }
 
     @Test
+    public  void testAsCartesianCoordinate() {
+        SphericCoordinate one = new SphericCoordinate(1.107148,0.640522, 3.741657);
+
+        CartesianCoordinate two = one.asCartesianCoordinate();
+        CartesianCoordinate expected = new CartesianCoordinate(1,2,3);
+        System.out.println(two.getX());
+        System.out.println(two.getY());
+        System.out.println(two.getZ());
+
+        assertEquals(expected.getX(), two.getX(), 0.00001);
+        assertEquals(expected.getY(), two.getY(), 0.00001);
+        assertEquals(expected.getZ(), two.getZ(), 0.00001);
+    }
+
+    @Test
     public void testGetCartesianDistance() {
         // 1,2,3 to 2,3,4 in cartesian coordinates
         SphericCoordinate one = new SphericCoordinate(1.107148,0.640522, 3.741657);
@@ -39,15 +54,12 @@ public class SphericCoordinateTest extends TestCase {
 
     @Test
     public void testGetCentralAngle() {
-        // 1,2,3 to 2,3,4 in cartesian coordinates
-        SphericCoordinate one = new SphericCoordinate(1.107148,0.640522, 3.741657);
-        SphericCoordinate two = new SphericCoordinate(0.982793,0.733581,5.385164);
+        SphericCoordinate one = new SphericCoordinate(0.7853981633974484, 1.5707963267948966, 1.4142135623730951);
+        SphericCoordinate two = new SphericCoordinate(2.356194490192345, 1.5707963267948966, 1.4142135623730951);
 
         double angle = one.getCentralAngle(two);
-        System.out.println(angle);
-        // TODO create test with solid values (draw example...)
-        double correctValue = Math.sqrt(3);
+        double correctValue = 90;
 
-        assertEquals(correctValue, angle, 0.000001);
+        assertEquals(correctValue, angle, 0.1);
     }
 }

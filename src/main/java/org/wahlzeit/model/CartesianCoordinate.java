@@ -110,7 +110,7 @@ public class CartesianCoordinate implements Coordinate{
 
     @Override
     public double getCentralAngle(Coordinate coordinate) {
-        return coordinate.asCartesianCoordinate().getCentralAngle(coordinate);
+        return this.asSphericCoordinate().getCentralAngle(coordinate);
     }
 
     @Override

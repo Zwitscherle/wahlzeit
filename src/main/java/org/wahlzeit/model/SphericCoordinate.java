@@ -64,11 +64,11 @@ public class SphericCoordinate implements Coordinate {
 
     @Override
     public double getCentralAngle(Coordinate coordinate) {
-        // is this formula correct? (Angle probably in degree or rad??)
         SphericCoordinate targetCoordinate = coordinate.asSphericCoordinate();
-        double centralAngle = Math.acos(Math.sin(this.phi) * Math.sin(targetCoordinate.getPhi()) *
-                Math.cos(this.phi) * Math.cos(targetCoordinate.getPhi()) *
-                Math.cos(targetCoordinate.getTheta() - this.theta));
+        double centralAngle = Math.toDegrees(Math.acos(Math.sin(Math.toRadians(this.phi)) *
+                Math.sin(Math.toRadians(targetCoordinate.getPhi())) *
+                Math.cos(Math.toRadians(this.phi)) * Math.cos(Math.toRadians(targetCoordinate.getPhi())) *
+                Math.cos(Math.toRadians(targetCoordinate.getTheta() - this.theta))));
         return centralAngle;
     }
 

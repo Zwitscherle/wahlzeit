@@ -33,7 +33,7 @@ import org.wahlzeit.services.*;
 public class PhotoManager extends ObjectManager {
 	
 	/**
-	 * TODO is this ok? I just use the FoodPhotoManager, because other wise there is now way to distinguish Photos from FoodPhotos...
+	 *
 	 */
 	protected static final PhotoManager instance = new FoodPhotoManager();
 
@@ -135,12 +135,6 @@ public class PhotoManager extends ObjectManager {
 	 */
 	protected Photo createObject(ResultSet rset) throws SQLException {
 		return PhotoFactory.getInstance().createPhoto(rset);
-//		TODO This would be an alternative solution if we do not use the foodPhotoManager in this class
-//		if (rset.getString("foodName") != null) {
-//			return FoodPhotoFactory.getInstance().createPhoto(rset);
-//		} else {
-//			return PhotoFactory.getInstance().createPhoto(rset);
-//		}
 	}
 	
 	/**
