@@ -26,14 +26,31 @@ public class SphericCoordinateTest extends TestCase {
     }
 
     @Test
+    public void testEquals() {
+        SphericCoordinate one = new SphericCoordinate(10,45, 3);
+        SphericCoordinate two = new SphericCoordinate(10,45,3);
+
+        Boolean isEqual = one.equals(two);
+
+        assertTrue(isEqual);
+    }
+
+    @Test
+    public void testNotEquals() {
+        SphericCoordinate one = new SphericCoordinate(10,45, 3);
+        SphericCoordinate two = new SphericCoordinate(20,45,3);
+
+        Boolean isEqual = one.equals(two);
+
+        assertFalse(isEqual);
+    }
+
+    @Test
     public  void testAsCartesianCoordinate() {
         SphericCoordinate one = new SphericCoordinate(1.107148,0.640522, 3.741657);
 
         CartesianCoordinate two = one.asCartesianCoordinate();
         CartesianCoordinate expected = new CartesianCoordinate(1,2,3);
-        System.out.println(two.getX());
-        System.out.println(two.getY());
-        System.out.println(two.getZ());
 
         assertEquals(expected.getX(), two.getX(), 0.00001);
         assertEquals(expected.getY(), two.getY(), 0.00001);

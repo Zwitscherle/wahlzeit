@@ -20,7 +20,27 @@ public class CartesianCoordinateTest extends TestCase {
         CartesianCoordinate one = new CartesianCoordinate(2.0001,2, 3);
         CartesianCoordinate two = new CartesianCoordinate(1.0001,2,3);
 
-        Boolean isEqual = one.isEqual(two);
+        Boolean isEqual = one.equals(two);
+
+        assertFalse(isEqual);
+    }
+
+    @Test
+    public void testEquals() {
+        CartesianCoordinate one = new CartesianCoordinate(1.0001,2, 3);
+        CartesianCoordinate two = new CartesianCoordinate(1.0001,2,3);
+
+        Boolean isEqual = one.equals(two);
+
+        assertTrue(isEqual);
+    }
+
+    @Test
+    public void testNotEquals() {
+        CartesianCoordinate one = new CartesianCoordinate(2.0001,2, 3);
+        CartesianCoordinate two = new CartesianCoordinate(1.0001,2,3);
+
+        Boolean isEqual = one.equals(two);
 
         assertFalse(isEqual);
     }

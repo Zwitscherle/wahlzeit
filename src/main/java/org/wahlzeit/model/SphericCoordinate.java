@@ -2,7 +2,7 @@ package org.wahlzeit.model;
 
 import java.util.Objects;
 
-public class SphericCoordinate implements Coordinate {
+public class SphericCoordinate extends AbstractCoordinate {
 
     private double phi; // longitude
     private double theta; // latitude
@@ -48,36 +48,13 @@ public class SphericCoordinate implements Coordinate {
     }
 
     @Override
-    public double getCartesianDistance(Coordinate coordinate) {
-        return this.asCartesianCoordinate().getCartesianDistance(coordinate);
-    }
-
-    @Override
     public SphericCoordinate asSphericCoordinate() {
         return this;
     }
 
     @Override
-    public double getCentralAngle(Coordinate coordinate) {
-        SphericCoordinate targetCoordinate = coordinate.asSphericCoordinate();
-        double centralAngle = Math.toDegrees(Math.acos(Math.sin(Math.toRadians(this.phi)) *
-                Math.sin(Math.toRadians(targetCoordinate.getPhi())) *
-                Math.cos(Math.toRadians(this.phi)) * Math.cos(Math.toRadians(targetCoordinate.getPhi())) *
-                Math.cos(Math.toRadians(targetCoordinate.getTheta() - this.theta))));
-        return centralAngle;
-    }
-
-    @Override
     public boolean isEqual(Coordinate coordinate) {
         return this.asCartesianCoordinate().isEqual(coordinate);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        SphericCoordinate otherCoordinate = (SphericCoordinate) o;
-        return isEqual(otherCoordinate);
     }
 
     @Override

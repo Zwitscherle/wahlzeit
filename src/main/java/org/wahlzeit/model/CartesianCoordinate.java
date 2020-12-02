@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * Coordinate represents the coordinates of a location object
  */
-public class CartesianCoordinate implements Coordinate{
+public class CartesianCoordinate extends AbstractCoordinate{
 
     private double x;
     private double y;
@@ -96,32 +96,6 @@ public class CartesianCoordinate implements Coordinate{
         return Math.abs(cartesianCoordinate.getX() - this.x) <= this.MAX_ERROR &&
                 Math.abs(cartesianCoordinate.getY() - this.y) <= this.MAX_ERROR &&
                 Math.abs(cartesianCoordinate.getZ() - this.z) <= this.MAX_ERROR;
-    }
-
-    /**
-     * calculates the cartesian distance to another coordinate object
-     * @methodtype calculation
-     */
-    @Override
-    public double getCartesianDistance(Coordinate coordinate) {
-        CartesianCoordinate cartesianCoordinate = coordinate.asCartesianCoordinate();
-        double distance = Math.sqrt(Math.pow((cartesianCoordinate.getX() - this.x), 2) +
-                Math.pow((cartesianCoordinate.getY() - this.y),2) +
-                Math.pow((cartesianCoordinate.getZ() - this.z), 2));
-        return distance;
-    }
-
-    @Override
-    public double getCentralAngle(Coordinate coordinate) {
-        return this.asSphericCoordinate().getCentralAngle(coordinate);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CartesianCoordinate otherCoordinate = (CartesianCoordinate) o;
-        return isEqual(otherCoordinate);
     }
 
     @Override
