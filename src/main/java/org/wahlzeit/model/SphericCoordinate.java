@@ -47,6 +47,7 @@ public class SphericCoordinate extends AbstractCoordinate {
         return cartesianCoordinate;
     }
 
+
     @Override
     public SphericCoordinate asSphericCoordinate() {
         return this;
@@ -54,7 +55,13 @@ public class SphericCoordinate extends AbstractCoordinate {
 
     @Override
     public boolean isEqual(Coordinate coordinate) {
-        return this.asCartesianCoordinate().isEqual(coordinate);
+        SphericCoordinate sphericCoordinate = coordinate.asSphericCoordinate();
+        if (this.radius == 0 && sphericCoordinate.getRadius() == 0) {
+            return true;
+        }
+        return Math.abs(sphericCoordinate.getPhi() - this.phi) <= this.MAX_ERROR &&
+                Math.abs(sphericCoordinate.getTheta() - this.theta) <= this.MAX_ERROR &&
+                Math.abs(sphericCoordinate.getRadius() - this.radius) <= this.MAX_ERROR;
     }
 
     @Override
