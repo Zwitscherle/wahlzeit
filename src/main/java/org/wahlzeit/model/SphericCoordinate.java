@@ -49,12 +49,7 @@ public class SphericCoordinate implements Coordinate {
 
     @Override
     public double getCartesianDistance(Coordinate coordinate) {
-        SphericCoordinate sphericCoordinate = coordinate.asSphericCoordinate();
-        double distance = Math.sqrt(Math.pow(this.radius, 2) + Math.pow(sphericCoordinate.getRadius(), 2) -
-                2 * this.radius * sphericCoordinate.getRadius() * (Math.sin(this.theta) *
-                Math.sin(sphericCoordinate.getTheta()) * Math.cos(this.phi - sphericCoordinate.getPhi()) +
-                Math.cos(this.theta) * Math.cos(sphericCoordinate.getTheta())));
-        return distance;
+        return this.asCartesianCoordinate().getCartesianDistance(coordinate);
     }
 
     @Override
@@ -74,10 +69,7 @@ public class SphericCoordinate implements Coordinate {
 
     @Override
     public boolean isEqual(Coordinate coordinate) {
-        SphericCoordinate sphericCoordinate = coordinate.asSphericCoordinate();
-        return Math.abs(sphericCoordinate.getPhi() - this.phi) <= this.MAX_ERROR &&
-                Math.abs(sphericCoordinate.getTheta() - this.theta) <= this.MAX_ERROR &&
-                Math.abs(sphericCoordinate.getRadius() - this.radius) <= this.MAX_ERROR;
+        return this.asCartesianCoordinate().isEqual(coordinate);
     }
 
     @Override

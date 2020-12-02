@@ -77,7 +77,10 @@ public class CartesianCoordinate implements Coordinate{
     @Override
     public SphericCoordinate asSphericCoordinate() {
         double radius = Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2) + Math.pow(this.z, 2));
-        double theta = Math.acos(this.z / radius);
+        double theta = 0;
+        if (radius != 0) {
+            theta = Math.acos(this.z / radius);
+        }
         double phi = Math.atan2(this.y, this.x);
         SphericCoordinate sphericCoordinate = new SphericCoordinate(phi, theta, radius);
         return sphericCoordinate;
