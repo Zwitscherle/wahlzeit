@@ -47,21 +47,9 @@ public class SphericCoordinate extends AbstractCoordinate {
         return cartesianCoordinate;
     }
 
-
     @Override
     public SphericCoordinate asSphericCoordinate() {
         return this;
-    }
-
-    @Override
-    public boolean isEqual(Coordinate coordinate) {
-        SphericCoordinate sphericCoordinate = coordinate.asSphericCoordinate();
-        if (this.radius == 0 && sphericCoordinate.getRadius() == 0) {
-            return true;
-        }
-        return Math.abs(sphericCoordinate.getPhi() - this.phi) <= this.MAX_ERROR &&
-                Math.abs(sphericCoordinate.getTheta() - this.theta) <= this.MAX_ERROR &&
-                Math.abs(sphericCoordinate.getRadius() - this.radius) <= this.MAX_ERROR;
     }
 
     @Override

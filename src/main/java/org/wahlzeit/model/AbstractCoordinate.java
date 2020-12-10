@@ -13,6 +13,16 @@ public abstract class AbstractCoordinate implements Coordinate {
     }
 
     /**
+     *
+     * @methodtype boolean-query
+     */
+    @Override
+    public boolean isEqual(Coordinate coordinate) {
+        CartesianCoordinate curCoordinate = this.asCartesianCoordinate();
+        return curCoordinate.isEqual(coordinate);
+    }
+
+    /**
      * calculates the cartesian distance to another coordinate object
      * @methodtype calculation
      */
