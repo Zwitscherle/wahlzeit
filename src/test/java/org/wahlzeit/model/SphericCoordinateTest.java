@@ -1,9 +1,11 @@
 package org.wahlzeit.model;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
-public class SphericCoordinateTest extends TestCase {
+public class SphericCoordinateTest {
 
     @Test
     public void testIsEqual() {
@@ -78,5 +80,28 @@ public class SphericCoordinateTest extends TestCase {
         double correctValue = 90;
 
         assertEquals(correctValue, angle, 0.1);
+    }
+
+    @Test(expected = AssertionError.class)
+    public void testCreateSphericCoordinateNaN() throws AssertionError {
+        SphericCoordinate one = new SphericCoordinate(Double.NaN,1,0);
+    }
+
+    @Test(expected = AssertionError.class)
+    public void testCreateSphericCoordinateInvalid() {
+        SphericCoordinate one = new SphericCoordinate(1,1,-1);
+    }
+
+    @Test(expected = AssertionError.class)
+    public void testCentralAngleNull() throws AssertionError {
+        SphericCoordinate one = new SphericCoordinate(1,1,1);
+        CartesianCoordinate two = null;
+        one.getCentralAngle(two);
+    }
+
+    @Test(expected = AssertionError.class)
+    public void testSetCoordinateNaN() throws AssertionError {
+        SphericCoordinate one = new SphericCoordinate(1,1,1);
+        one.setRadius(Double.NaN);
     }
 }

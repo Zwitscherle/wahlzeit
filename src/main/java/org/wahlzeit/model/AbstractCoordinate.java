@@ -18,6 +18,7 @@ public abstract class AbstractCoordinate implements Coordinate {
      */
     @Override
     public boolean isEqual(Coordinate coordinate) {
+        this.assertNotNull(coordinate);
         CartesianCoordinate curCoordinate = this.asCartesianCoordinate();
         return curCoordinate.isEqual(coordinate);
     }
@@ -28,6 +29,7 @@ public abstract class AbstractCoordinate implements Coordinate {
      */
     @Override
     public double getCartesianDistance(Coordinate coordinate) {
+        this.assertNotNull(coordinate);
         CartesianCoordinate firstCoordinate = this.asCartesianCoordinate();
         CartesianCoordinate otherCoordinate = coordinate.asCartesianCoordinate();
         double distance = Math.sqrt(Math.pow((otherCoordinate.getX() - firstCoordinate.getX()), 2) +
@@ -42,6 +44,7 @@ public abstract class AbstractCoordinate implements Coordinate {
      */
     @Override
     public double getCentralAngle(Coordinate coordinate) {
+        this.assertNotNull(coordinate);
         SphericCoordinate firstCoordinate = this.asSphericCoordinate();
         SphericCoordinate secondCoordinate = coordinate.asSphericCoordinate();
         double centralAngle = Math.toDegrees(Math.acos(Math.sin(Math.toRadians(firstCoordinate.getPhi())) *
@@ -49,5 +52,15 @@ public abstract class AbstractCoordinate implements Coordinate {
                 Math.cos(Math.toRadians(firstCoordinate.getPhi())) * Math.cos(Math.toRadians(secondCoordinate.getPhi())) *
                 Math.cos(Math.toRadians(secondCoordinate.getTheta() - firstCoordinate.getTheta()))));
         return centralAngle;
+    }
+
+    protected void assertNotNull(Coordinate coordinate) {
+        assert coordinate != null;
+    }
+
+    protected abstract void assertClassInvariants();
+
+    protected void assertValidDouble(double value) {
+        assert Double.isFinite(value);
     }
 }

@@ -12,6 +12,7 @@ public class SphericCoordinate extends AbstractCoordinate {
         this.phi = phi;
         this.theta = theta;
         this.radius = radius;
+        this.assertClassInvariants();
     }
 
     public double getPhi() {
@@ -19,6 +20,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     public void setPhi(double phi) {
+        assertValidDouble(phi);
         this.phi = phi;
     }
 
@@ -27,6 +29,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     public void setTheta(double theta) {
+        assertValidDouble(theta);
         this.theta = theta;
     }
 
@@ -35,6 +38,8 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     public void setRadius(double radius) {
+        assertValidDouble(radius);
+        assertValidRadius(radius);
         this.radius = radius;
     }
 
@@ -44,6 +49,7 @@ public class SphericCoordinate extends AbstractCoordinate {
         double y = this.radius * Math.sin(this.theta) * Math.sin(this.phi);
         double z = this.radius * Math.cos(this.theta);
         CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(x, y, z);
+        cartesianCoordinate.assertClassInvariants();
         return cartesianCoordinate;
     }
 
@@ -57,4 +63,15 @@ public class SphericCoordinate extends AbstractCoordinate {
         return Objects.hash(this.phi, this.theta, this.radius);
     }
 
+    @Override
+    protected void assertClassInvariants() {
+        assertValidDouble(this.phi);
+        assertValidDouble(this.theta);
+        assertValidDouble(this.radius);
+        assertValidRadius(this.radius);
+    }
+
+    private void assertValidRadius(double radius) {
+        assert radius >= 0;
+    }
 }

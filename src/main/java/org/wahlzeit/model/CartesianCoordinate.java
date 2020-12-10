@@ -19,6 +19,7 @@ public class CartesianCoordinate extends AbstractCoordinate{
         this.x = x;
         this.y = y;
         this.z = z;
+        assertClassInvariants();
     }
 
     /**
@@ -34,6 +35,7 @@ public class CartesianCoordinate extends AbstractCoordinate{
      * @methodtype set
      */
     public void setX(double x) {
+        assertValidDouble(x);
         this.x = x;
     }
 
@@ -41,15 +43,14 @@ public class CartesianCoordinate extends AbstractCoordinate{
      *
      * @methodtype get
      */
-    public double getY() {
-        return y;
-    }
+    public double getY() { return y; }
 
     /**
      *
      * @methodtype set
      */
     public void setY(double y) {
+        assertValidDouble(y);
         this.y = y;
     }
 
@@ -57,15 +58,14 @@ public class CartesianCoordinate extends AbstractCoordinate{
      *
      * @methodtype get
      */
-    public double getZ() {
-        return z;
-    }
+    public double getZ() { return z; }
 
     /**
      *
      * @methodtype set
      */
     public void setZ(double z) {
+        assertValidDouble(z);
         this.z = z;
     }
 
@@ -83,6 +83,7 @@ public class CartesianCoordinate extends AbstractCoordinate{
         }
         double phi = Math.atan2(this.y, this.x);
         SphericCoordinate sphericCoordinate = new SphericCoordinate(phi, theta, radius);
+        sphericCoordinate.assertClassInvariants();
         return sphericCoordinate;
     }
 
@@ -92,6 +93,7 @@ public class CartesianCoordinate extends AbstractCoordinate{
      */
     @Override
     public boolean isEqual(Coordinate coordinate) {
+        this.assertNotNull(coordinate);
         CartesianCoordinate cartesianCoordinate = coordinate.asCartesianCoordinate();
         return Math.abs(cartesianCoordinate.getX() - this.x) <= this.MAX_ERROR &&
                 Math.abs(cartesianCoordinate.getY() - this.y) <= this.MAX_ERROR &&
@@ -102,5 +104,12 @@ public class CartesianCoordinate extends AbstractCoordinate{
     public int hashCode() {
         return Objects.hash(this.x, this.y, this.z);
     }
+
+    @Override
+    protected void assertClassInvariants(){
+        assertValidDouble(this.x);
+        assertValidDouble(this.y);
+        assertValidDouble(this.z);
+    };
 
 }

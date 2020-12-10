@@ -1,9 +1,11 @@
 package org.wahlzeit.model;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
-public class CartesianCoordinateTest extends TestCase {
+public class CartesianCoordinateTest {
 
     @Test
     public void testIsEqual() {
@@ -78,6 +80,24 @@ public class CartesianCoordinateTest extends TestCase {
         double correctValue = 90;
 
         assertEquals(correctValue, angle, 0.1);
+    }
+
+    @Test(expected = AssertionError.class)
+    public void testCartesianDistanceNull() throws AssertionError {
+        CartesianCoordinate one = new CartesianCoordinate(1,1,0);
+        CartesianCoordinate two = null;
+        one.getCartesianDistance(two);
+    }
+
+    @Test(expected = AssertionError.class)
+    public void testCreateCartesianCoordinateNaN() throws AssertionError {
+        CartesianCoordinate one = new CartesianCoordinate(Double.NaN,1,0);
+    }
+
+    @Test(expected = AssertionError.class)
+    public void testSetCoordinateNan() throws AssertionError {
+        CartesianCoordinate one = new CartesianCoordinate(1,1,0);
+        one.setX(Double.NaN);
     }
 
 }
