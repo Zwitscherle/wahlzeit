@@ -45,11 +45,11 @@ public class SphericCoordinate extends AbstractCoordinate {
 
     @Override
     public CartesianCoordinate asCartesianCoordinate() {
+        this.assertClassInvariants();
         double x = this.radius * Math.sin(this.theta) * Math.cos(this.phi);
         double y = this.radius * Math.sin(this.theta) * Math.sin(this.phi);
         double z = this.radius * Math.cos(this.theta);
         CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(x, y, z);
-        cartesianCoordinate.assertClassInvariants();
         return cartesianCoordinate;
     }
 

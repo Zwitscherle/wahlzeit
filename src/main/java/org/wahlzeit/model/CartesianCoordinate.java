@@ -76,6 +76,7 @@ public class CartesianCoordinate extends AbstractCoordinate{
 
     @Override
     public SphericCoordinate asSphericCoordinate() {
+        this.assertClassInvariants();
         double radius = Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2) + Math.pow(this.z, 2));
         double theta = 0;
         if (radius != 0) {
@@ -83,7 +84,6 @@ public class CartesianCoordinate extends AbstractCoordinate{
         }
         double phi = Math.atan2(this.y, this.x);
         SphericCoordinate sphericCoordinate = new SphericCoordinate(phi, theta, radius);
-        sphericCoordinate.assertClassInvariants();
         return sphericCoordinate;
     }
 
