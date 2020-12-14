@@ -82,20 +82,20 @@ public class CartesianCoordinateTest {
         assertEquals(correctValue, angle, 0.1);
     }
 
-    @Test(expected = AssertionError.class)
-    public void testCartesianDistanceNull() throws AssertionError {
+    @Test(expected = NullPointerException.class)
+    public void testCartesianDistanceNull() throws NullPointerException {
         CartesianCoordinate one = new CartesianCoordinate(1,1,0);
         CartesianCoordinate two = null;
         one.getCartesianDistance(two);
     }
 
-    @Test(expected = AssertionError.class)
-    public void testCreateCartesianCoordinateNaN() throws AssertionError {
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateCartesianCoordinateNaN() throws IllegalArgumentException {
         CartesianCoordinate one = new CartesianCoordinate(Double.NaN,1,0);
     }
 
-    @Test(expected = AssertionError.class)
-    public void testSetCoordinateNan() throws AssertionError {
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetCoordinateNan() throws IllegalArgumentException {
         CartesianCoordinate one = new CartesianCoordinate(1,1,0);
         one.setX(Double.NaN);
     }

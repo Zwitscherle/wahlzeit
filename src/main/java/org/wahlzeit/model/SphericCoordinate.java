@@ -72,6 +72,8 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     private void assertValidRadius(double radius) {
-        assert radius >= 0;
+        if (radius < 0) {
+            throw new IllegalArgumentException("radius can not be negative");
+        }
     }
 }

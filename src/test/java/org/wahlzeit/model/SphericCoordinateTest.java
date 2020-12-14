@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
+import org.mockito.internal.matchers.Null;
 
 public class SphericCoordinateTest {
 
@@ -82,25 +83,25 @@ public class SphericCoordinateTest {
         assertEquals(correctValue, angle, 0.1);
     }
 
-    @Test(expected = AssertionError.class)
-    public void testCreateSphericCoordinateNaN() throws AssertionError {
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateSphericCoordinateNaN() throws IllegalArgumentException {
         SphericCoordinate one = new SphericCoordinate(Double.NaN,1,0);
     }
 
-    @Test(expected = AssertionError.class)
-    public void testCreateSphericCoordinateInvalid() {
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateSphericCoordinateInvalid() throws IllegalArgumentException {
         SphericCoordinate one = new SphericCoordinate(1,1,-1);
     }
 
-    @Test(expected = AssertionError.class)
-    public void testCentralAngleNull() throws AssertionError {
+    @Test(expected = NullPointerException.class)
+    public void testCentralAngleNull() throws NullPointerException {
         SphericCoordinate one = new SphericCoordinate(1,1,1);
         CartesianCoordinate two = null;
         one.getCentralAngle(two);
     }
 
-    @Test(expected = AssertionError.class)
-    public void testSetCoordinateNaN() throws AssertionError {
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetCoordinateNaN() throws IllegalArgumentException {
         SphericCoordinate one = new SphericCoordinate(1,1,1);
         one.setRadius(Double.NaN);
     }

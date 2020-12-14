@@ -55,12 +55,16 @@ public abstract class AbstractCoordinate implements Coordinate {
     }
 
     protected void assertNotNull(Coordinate coordinate) {
-        assert coordinate != null;
+        if (coordinate == null) {
+            throw new NullPointerException("Coordinate is null");
+        }
     }
 
     protected abstract void assertClassInvariants();
 
     protected void assertValidDouble(double value) {
-        assert Double.isFinite(value);
+        if(!Double.isFinite(value)) {
+            throw new IllegalArgumentException("Argument is not a valid Double");
+        }
     }
 }
