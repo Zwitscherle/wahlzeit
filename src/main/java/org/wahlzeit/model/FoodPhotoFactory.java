@@ -80,6 +80,9 @@ public class FoodPhotoFactory extends PhotoFactory {
      */
     @Override
     public FoodPhoto createPhoto(ResultSet rs) throws SQLException {
+        if (rs == null) {
+            throw new IllegalArgumentException("ResultSet can not be empty");
+        }
         return new FoodPhoto(rs);
     }
 
