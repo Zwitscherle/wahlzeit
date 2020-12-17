@@ -1,9 +1,9 @@
 package org.wahlzeit.model;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
-public class FoodPhotoTest extends TestCase {
+public class FoodPhotoTest {
 
     @Test
     public void testCreateFoodPhoto() {
@@ -15,7 +15,7 @@ public class FoodPhotoTest extends TestCase {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testCreateFoodPhotoNull() {
+    public void testCreateFoodPhotoNull() throws IllegalArgumentException {
         Food testFood = null;
         FoodPhoto testPhoto= new FoodPhoto(testFood);
     }
