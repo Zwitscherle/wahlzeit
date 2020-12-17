@@ -123,6 +123,9 @@ public class Photo extends DataObject {
 	 * @methodtype constructor
 	 */
 	public Photo(PhotoId myId) {
+		if (myId == null) {
+			throw new IllegalArgumentException("PhotoId is empty");
+		}
 		id = myId;
 		incWriteCount();
 	}
@@ -147,6 +150,9 @@ public class Photo extends DataObject {
 	 * 
 	 */
 	public void readFrom(ResultSet rset) throws SQLException {
+		if (rset == null) {
+			throw new IllegalArgumentException("ResultSet is empty");
+		}
 		id = PhotoId.getIdFromInt(rset.getInt("id"));
 
 		ownerId = rset.getInt("owner_id");
@@ -186,6 +192,9 @@ public class Photo extends DataObject {
 	 * 
 	 */
 	public void writeOn(ResultSet rset) throws SQLException {
+		if (rset == null) {
+			throw new IllegalArgumentException("ResultSet is empty");
+		}
 		rset.updateInt("id", id.asInt());
 		rset.updateInt("owner_id", ownerId);
 		rset.updateString("owner_name", ownerName);

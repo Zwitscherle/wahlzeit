@@ -23,6 +23,9 @@ public class FoodPhotoManager extends PhotoManager {
      */
     @Override
      protected FoodPhoto createObject(ResultSet rset) throws SQLException {
+        if (rset == null) {
+            throw new IllegalArgumentException("ResultSet can not be empty");
+        }
         return FoodPhotoFactory.getInstance().createPhoto(rset);
     }
 }

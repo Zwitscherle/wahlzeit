@@ -59,6 +59,9 @@ public class FoodPhotoFactory extends PhotoFactory {
      */
     @Override
     public FoodPhoto createPhoto(PhotoId id) {
+        if (id == null) {
+            throw new IllegalArgumentException("PhotoId can not be empty");
+        }
         return new FoodPhoto(id);
     }
 
@@ -66,6 +69,9 @@ public class FoodPhotoFactory extends PhotoFactory {
      * @methodtype factory
      */
     public FoodPhoto createPhoto(Food food) {
+        if (food == null) {
+            throw new IllegalArgumentException("Food can not be empty");
+        }
         return new FoodPhoto(food);
     }
 

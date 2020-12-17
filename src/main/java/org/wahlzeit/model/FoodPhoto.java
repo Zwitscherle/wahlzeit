@@ -17,10 +17,16 @@ public class FoodPhoto extends Photo {
 
     public FoodPhoto(Food food) {
         super();
+        if (food == null) {
+            throw new IllegalArgumentException("Food can not be empty");
+        }
         this.food = food;
     }
 
     public FoodPhoto(ResultSet rset) throws SQLException {
+        if (rset == null) {
+            throw new IllegalArgumentException("ResultSet can not be empty");
+        }
         readFrom(rset);
     }
 
@@ -29,6 +35,9 @@ public class FoodPhoto extends Photo {
     }
 
     public void setFood(Food food) {
+        if (food == null) {
+            throw new IllegalArgumentException("Food can not be empty");
+        }
         this.food = food;
     }
 

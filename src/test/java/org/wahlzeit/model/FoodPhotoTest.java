@@ -14,5 +14,10 @@ public class FoodPhotoTest extends TestCase {
         assertEquals(testPhoto.getClass(),FoodPhoto.class);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateFoodPhotoNull() {
+        Food testFood = null;
+        FoodPhoto testPhoto= new FoodPhoto(testFood);
+    }
 
 }
