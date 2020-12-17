@@ -61,7 +61,7 @@ public abstract class AbstractCoordinate implements Coordinate {
 
     protected void assertNotNull(Coordinate coordinate) {
         if (coordinate == null) {
-            throw new NullPointerException("Coordinate is null");
+            throw new IllegalArgumentException("Coordinate is null");
         }
     }
 

@@ -82,7 +82,7 @@ public class CartesianCoordinateTest {
         assertEquals(correctValue, angle, 0.1);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testCartesianDistanceNull() throws NullPointerException {
         CartesianCoordinate one = new CartesianCoordinate(1,1,0);
         CartesianCoordinate two = null;

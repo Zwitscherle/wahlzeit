@@ -92,7 +92,7 @@ public class SphericCoordinateTest {
         SphericCoordinate one = new SphericCoordinate(1,1,-1);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testCentralAngleNull() throws NullPointerException {
         SphericCoordinate one = new SphericCoordinate(1,1,1);
         CartesianCoordinate two = null;
