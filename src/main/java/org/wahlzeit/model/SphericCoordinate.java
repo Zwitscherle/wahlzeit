@@ -4,6 +4,9 @@ import java.util.Objects;
 
 public class SphericCoordinate extends AbstractCoordinate {
 
+    final static double ANGLE_MIN = 0;
+    final static double ANGLE_MAX = 360;
+
     private double phi; // longitude
     private double theta; // latitude
     private double radius;

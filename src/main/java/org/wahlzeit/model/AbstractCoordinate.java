@@ -51,6 +51,11 @@ public abstract class AbstractCoordinate implements Coordinate {
                 Math.sin(Math.toRadians(secondCoordinate.getPhi())) *
                 Math.cos(Math.toRadians(firstCoordinate.getPhi())) * Math.cos(Math.toRadians(secondCoordinate.getPhi())) *
                 Math.cos(Math.toRadians(secondCoordinate.getTheta() - firstCoordinate.getTheta()))));
+
+        if(centralAngle < SphericCoordinate.ANGLE_MIN || centralAngle > SphericCoordinate.ANGLE_MAX) {
+            throw new ArithmeticException("Error in angle calculation");
+        }
+
         return centralAngle;
     }
 
