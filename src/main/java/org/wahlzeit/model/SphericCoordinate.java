@@ -12,10 +12,12 @@ public class SphericCoordinate extends AbstractCoordinate {
     private double radius;
 
     public SphericCoordinate(double phi, double theta, double radius) {
+        assertValidDouble(phi);
+        assertValidDouble(theta);
+        assertValidDouble(radius);
         this.phi = phi;
         this.theta = theta;
         this.radius = radius;
-        this.assertClassInvariants();
     }
 
     public double getPhi() {
@@ -53,6 +55,7 @@ public class SphericCoordinate extends AbstractCoordinate {
         double y = this.radius * Math.sin(this.theta) * Math.sin(this.phi);
         double z = this.radius * Math.cos(this.theta);
         CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(x, y, z);
+        this.assertClassInvariants();
         return cartesianCoordinate;
     }
 

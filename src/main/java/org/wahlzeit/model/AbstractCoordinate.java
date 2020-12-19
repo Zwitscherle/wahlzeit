@@ -35,6 +35,9 @@ public abstract class AbstractCoordinate implements Coordinate {
         double distance = Math.sqrt(Math.pow((otherCoordinate.getX() - firstCoordinate.getX()), 2) +
                 Math.pow((otherCoordinate.getY() - firstCoordinate.getY()),2) +
                 Math.pow((otherCoordinate.getZ() - firstCoordinate.getZ()), 2));
+        if(distance < 0) {
+            throw new ArithmeticException("Error in distance calculation");
+        }
         return distance;
     }
 

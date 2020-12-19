@@ -16,10 +16,12 @@ public class CartesianCoordinate extends AbstractCoordinate{
      * @methodtype constructor
      */
     public CartesianCoordinate(double x, double y, double z) {
+        assertValidDouble(x);
+        assertValidDouble(y);
+        assertValidDouble(z);
         this.x = x;
         this.y = y;
         this.z = z;
-        assertClassInvariants();
     }
 
     /**
@@ -84,6 +86,7 @@ public class CartesianCoordinate extends AbstractCoordinate{
         }
         double phi = Math.atan2(this.y, this.x);
         SphericCoordinate sphericCoordinate = new SphericCoordinate(phi, theta, radius);
+        this.assertClassInvariants();
         return sphericCoordinate;
     }
 
