@@ -15,6 +15,7 @@ public class SphericCoordinate extends AbstractCoordinate {
         assertValidDouble(phi);
         assertValidDouble(theta);
         assertValidDouble(radius);
+        assertValidRadius(radius);
         this.phi = phi;
         this.theta = theta;
         this.radius = radius;
