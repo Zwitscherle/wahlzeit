@@ -178,7 +178,7 @@ public class Photo extends DataObject {
 		double x = rset.getDouble("x");
 		double y = rset.getDouble("y");
 		double z = rset.getDouble("z");
-		CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(x, y, z);
+		CartesianCoordinate cartesianCoordinate = CartesianCoordinate.createOrGetCartesianCoordinate(x, y, z);
 		if (isSpheric) {
 			SphericCoordinate sphericCoordinate = cartesianCoordinate.asSphericCoordinate();
 			location = new Location(sphericCoordinate);

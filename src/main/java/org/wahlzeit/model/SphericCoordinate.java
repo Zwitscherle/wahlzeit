@@ -1,17 +1,21 @@
 package org.wahlzeit.model;
 
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class SphericCoordinate extends AbstractCoordinate {
+
+    // map for sharing coordinates
+    private static ConcurrentHashMap<Integer, SphericCoordinate> sphericCoordinatesMap = new ConcurrentHashMap<>();
 
     final static double ANGLE_MIN = 0;
     final static double ANGLE_MAX = 360;
 
-    private double phi; // longitude
-    private double theta; // latitude
-    private double radius;
+    private final double phi; // longitude
+    private final double theta; // latitude
+    private final double radius;
 
-    public SphericCoordinate(double phi, double theta, double radius) {
+    private SphericCoordinate(double phi, double theta, double radius) {
         assertValidDouble(phi);
         assertValidDouble(theta);
         assertValidDouble(radius);
@@ -19,34 +23,30 @@ public class SphericCoordinate extends AbstractCoordinate {
         this.phi = phi;
         this.theta = theta;
         this.radius = radius;
+    }
+
+    public static SphericCoordinate createOrGetSphericCoordinate(double phi, double theta, double radius) {
+        SphericCoordinate sphericCoordinate = new SphericCoordinate(phi, theta, radius);
+        int currentHash = sphericCoordinate.hashCode();
+        SphericCoordinate coordinateInMap = sphericCoordinatesMap.get(currentHash);
+        if(coordinateInMap == null) {
+            return sphericCoordinate;
+        } else {
+            sphericCoordinatesMap.put(currentHash, sphericCoordinate);
+            return coordinateInMap;
+        }
     }
 
     public double getPhi() {
         return phi;
     }
 
-    public void setPhi(double phi) {
-        assertValidDouble(phi);
-        this.phi = phi;
-    }
-
     public double getTheta() {
         return theta;
     }
 
-    public void setTheta(double theta) {
-        assertValidDouble(theta);
-        this.theta = theta;
-    }
-
     public double getRadius() {
         return radius;
-    }
-
-    public void setRadius(double radius) {
-        assertValidDouble(radius);
-        assertValidRadius(radius);
-        this.radius = radius;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class SphericCoordinate extends AbstractCoordinate {
         double x = this.radius * Math.sin(this.theta) * Math.cos(this.phi);
         double y = this.radius * Math.sin(this.theta) * Math.sin(this.phi);
         double z = this.radius * Math.cos(this.theta);
-        CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(x, y, z);
+        CartesianCoordinate cartesianCoordinate = CartesianCoordinate.createOrGetCartesianCoordinate(x, y, z);
         this.assertClassInvariants();
         return cartesianCoordinate;
     }
@@ -76,6 +76,7 @@ public class SphericCoordinate extends AbstractCoordinate {
         assertValidDouble(this.theta);
         assertValidDouble(this.radius);
         assertValidRadius(this.radius);
+
     }
 
     private void assertValidRadius(double radius) {

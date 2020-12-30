@@ -1,21 +1,25 @@
 package org.wahlzeit.model;
 
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Coordinate represents the coordinates of a location object
  */
 public class CartesianCoordinate extends AbstractCoordinate{
 
-    private double x;
-    private double y;
-    private double z;
+    // map for sharing coordinates
+    private static ConcurrentHashMap<Integer, CartesianCoordinate> cartesianCoordinatesMap = new ConcurrentHashMap<>();
+
+    private final double x;
+    private final double y;
+    private final double z;
 
     /**
      *
      * @methodtype constructor
      */
-    public CartesianCoordinate(double x, double y, double z) {
+    private CartesianCoordinate(double x, double y, double z) {
         assertValidDouble(x);
         assertValidDouble(y);
         assertValidDouble(z);
@@ -24,52 +28,25 @@ public class CartesianCoordinate extends AbstractCoordinate{
         this.z = z;
     }
 
-    /**
-     *
-     * @methodtype get
-     */
+    public static CartesianCoordinate createOrGetCartesianCoordinate(double x, double y, double z) {
+        CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(x, y, z);
+        int currentHash = cartesianCoordinate.hashCode();
+        CartesianCoordinate coordinateInMap = cartesianCoordinatesMap.get(currentHash);
+        if(coordinateInMap == null) {
+            return cartesianCoordinate;
+        } else {
+            cartesianCoordinatesMap.put(currentHash, cartesianCoordinate);
+            return coordinateInMap;
+        }
+    }
+
     public double getX() {
         return x;
     }
 
-    /**
-     *
-     * @methodtype set
-     */
-    public void setX(double x) {
-        assertValidDouble(x);
-        this.x = x;
-    }
-
-    /**
-     *
-     * @methodtype get
-     */
     public double getY() { return y; }
 
-    /**
-     *
-     * @methodtype set
-     */
-    public void setY(double y) {
-        assertValidDouble(y);
-        this.y = y;
-    }
-
-    /**
-     *
-     * @methodtype get
-     */
     public double getZ() { return z; }
-
-    /**
-     *
-     * @methodtype set
-     */
-    public void setZ(double z) {
-        assertValidDouble(z);
-        this.z = z;
-    }
 
     @Override
     public CartesianCoordinate asCartesianCoordinate() {
@@ -85,7 +62,7 @@ public class CartesianCoordinate extends AbstractCoordinate{
             theta = Math.acos(this.z / radius);
         }
         double phi = Math.atan2(this.y, this.x);
-        SphericCoordinate sphericCoordinate = new SphericCoordinate(phi, theta, radius);
+        SphericCoordinate sphericCoordinate = SphericCoordinate.createOrGetSphericCoordinate(phi, theta, radius);
         this.assertClassInvariants();
         return sphericCoordinate;
     }
