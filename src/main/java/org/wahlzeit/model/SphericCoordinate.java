@@ -28,12 +28,14 @@ public class SphericCoordinate extends AbstractCoordinate {
     public static SphericCoordinate createOrGetSphericCoordinate(double phi, double theta, double radius) {
         SphericCoordinate sphericCoordinate = new SphericCoordinate(phi, theta, radius);
         int currentHash = sphericCoordinate.hashCode();
-        SphericCoordinate coordinateInMap = sphericCoordinatesMap.get(currentHash);
-        if(coordinateInMap == null) {
-            return sphericCoordinate;
-        } else {
-            sphericCoordinatesMap.put(currentHash, sphericCoordinate);
-            return coordinateInMap;
+        synchronized (sphericCoordinatesMap) {
+            SphericCoordinate coordinateInMap = sphericCoordinatesMap.get(currentHash);
+            if (coordinateInMap == null) {
+                return sphericCoordinate;
+            } else {
+                sphericCoordinatesMap.put(currentHash, sphericCoordinate);
+                return coordinateInMap;
+            }
         }
     }
 

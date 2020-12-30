@@ -31,12 +31,14 @@ public class CartesianCoordinate extends AbstractCoordinate{
     public static CartesianCoordinate createOrGetCartesianCoordinate(double x, double y, double z) {
         CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(x, y, z);
         int currentHash = cartesianCoordinate.hashCode();
-        CartesianCoordinate coordinateInMap = cartesianCoordinatesMap.get(currentHash);
-        if(coordinateInMap == null) {
-            return cartesianCoordinate;
-        } else {
-            cartesianCoordinatesMap.put(currentHash, cartesianCoordinate);
-            return coordinateInMap;
+        synchronized (cartesianCoordinatesMap) {
+            CartesianCoordinate coordinateInMap = cartesianCoordinatesMap.get(currentHash);
+            if (coordinateInMap == null) {
+                return cartesianCoordinate;
+            } else {
+                cartesianCoordinatesMap.put(currentHash, cartesianCoordinate);
+                return coordinateInMap;
+            }
         }
     }
 
