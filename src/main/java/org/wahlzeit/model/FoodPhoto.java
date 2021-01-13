@@ -1,8 +1,15 @@
 package org.wahlzeit.model;
 
+import org.wahlzeit.utils.PatternInstance;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
+@PatternInstance(
+        patternNames = {"Abstract Factory"},
+        participants = {"ConcreteProduct"}
+)
 public class FoodPhoto extends Photo {
 
     private Food food;

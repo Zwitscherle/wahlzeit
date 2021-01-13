@@ -1,10 +1,16 @@
 package org.wahlzeit.model;
 
 import org.wahlzeit.services.SysLog;
+import org.wahlzeit.utils.PatternInstance;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
+@PatternInstance(
+        patternNames = {"Abstract Factory", "Singleton"},
+        participants = {"Concrete Factory", "Singleton"}
+)
 public class FoodPhotoFactory extends PhotoFactory {
 
     /**

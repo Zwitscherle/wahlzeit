@@ -1,9 +1,16 @@
 package org.wahlzeit.model;
 
 
+import org.wahlzeit.utils.PatternInstance;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
+@PatternInstance(
+        patternNames = {"Mediator Pattern", "Singleton"},
+        participants ={"MediatorInstance", "Singleton"}
+)
 public class FoodPhotoManager extends PhotoManager {
 
     /**

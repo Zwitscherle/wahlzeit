@@ -1,11 +1,17 @@
 package org.wahlzeit.model;
 
+import org.wahlzeit.utils.PatternInstance;
+
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Coordinate represents the coordinates of a location object
  */
+@PatternInstance(
+        patternNames = {"Value Object"},
+        participants = {"ValueObject"}
+)
 public class CartesianCoordinate extends AbstractCoordinate{
 
     // map for sharing coordinates
