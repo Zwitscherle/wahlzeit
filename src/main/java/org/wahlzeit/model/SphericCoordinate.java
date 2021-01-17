@@ -2,8 +2,8 @@ package org.wahlzeit.model;
 
 import org.wahlzeit.utils.PatternInstance;
 
+import java.util.HashMap;
 import java.util.Objects;
-import java.util.concurrent.ConcurrentHashMap;
 
 
 @PatternInstance(
@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class SphericCoordinate extends AbstractCoordinate {
 
     // map for sharing coordinates
-    private static ConcurrentHashMap<Integer, SphericCoordinate> sphericCoordinatesMap = new ConcurrentHashMap<>();
+    private static HashMap<Integer, SphericCoordinate> sphericCoordinatesMap = new HashMap<>();
 
     final static double ANGLE_MIN = 0;
     final static double ANGLE_MAX = 360;
