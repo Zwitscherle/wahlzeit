@@ -2,8 +2,8 @@ package org.wahlzeit.model;
 
 import org.wahlzeit.utils.PatternInstance;
 
+import java.util.HashMap;
 import java.util.Objects;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Coordinate represents the coordinates of a location object
@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class CartesianCoordinate extends AbstractCoordinate{
 
     // map for sharing coordinates
-    private static ConcurrentHashMap<Integer, CartesianCoordinate> cartesianCoordinatesMap = new ConcurrentHashMap<>();
+    private static HashMap<Integer, CartesianCoordinate> cartesianCoordinatesMap = new HashMap<>();
 
     private final double x;
     private final double y;
@@ -40,9 +40,9 @@ public class CartesianCoordinate extends AbstractCoordinate{
         synchronized (cartesianCoordinatesMap) {
             CartesianCoordinate coordinateInMap = cartesianCoordinatesMap.get(currentHash);
             if (coordinateInMap == null) {
+                cartesianCoordinatesMap.put(currentHash, cartesianCoordinate);
                 return cartesianCoordinate;
             } else {
-                cartesianCoordinatesMap.put(currentHash, cartesianCoordinate);
                 return coordinateInMap;
             }
         }

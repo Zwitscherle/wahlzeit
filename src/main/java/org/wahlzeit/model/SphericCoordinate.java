@@ -38,9 +38,9 @@ public class SphericCoordinate extends AbstractCoordinate {
         synchronized (sphericCoordinatesMap) {
             SphericCoordinate coordinateInMap = sphericCoordinatesMap.get(currentHash);
             if (coordinateInMap == null) {
+                sphericCoordinatesMap.put(currentHash, sphericCoordinate);
                 return sphericCoordinate;
             } else {
-                sphericCoordinatesMap.put(currentHash, sphericCoordinate);
                 return coordinateInMap;
             }
         }

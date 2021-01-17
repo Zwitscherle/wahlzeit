@@ -1,11 +1,17 @@
 package org.wahlzeit.model;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
+import static org.junit.Assert.*;
+
 public class SphericCoordinateTest {
+
+    @Test
+    public void testSameSphericCoordinate() throws AssertionError{
+        SphericCoordinate one = SphericCoordinate.createOrGetSphericCoordinate(10,45, 3);
+        SphericCoordinate two = SphericCoordinate.createOrGetSphericCoordinate(10,45, 3);
+        assertSame( one, two);
+    }
 
     @Test
     public void testIsEqual() {
