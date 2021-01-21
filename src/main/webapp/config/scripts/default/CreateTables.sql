@@ -37,7 +37,8 @@ CREATE TABLE photos (
 	foodName text,
     price double precision,
     vegetarian boolean,
-    vendor text
+    vendor text,
+    typeName text
 );
 
 CREATE TABLE tags (

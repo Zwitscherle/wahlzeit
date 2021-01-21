@@ -7,8 +7,9 @@ public class FoodTest extends TestCase {
 
     @Test
     public void testIsEqual() {
-        Food one = new Food("test", 1.00, true, "Aldi");
-        Food two = new Food("test", 1.00, true, "Aldi");
+        FoodType test = new FoodType("testType", true);
+        Food one = new Food(test, "test", 1.00, "Aldi");
+        Food two = new Food(test, "test", 1.00, "Aldi");
 
         Boolean isEqual = one.isEqual(two);
 
@@ -17,8 +18,9 @@ public class FoodTest extends TestCase {
 
     @Test
     public void testIsNotEqual() {
-        Food one = new Food("test", 1.00, true, "Aldi");
-        Food two = new Food("test", 1.00, true, "Lidl");
+        FoodType test = new FoodType("testType", true);
+        Food one = new Food(test, "test1", 1.00, "Aldi");
+        Food two = new Food(test, "test", 1.00, "Aldi");
 
         Boolean isEqual = one.isEqual(two);
 

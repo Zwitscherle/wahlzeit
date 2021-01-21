@@ -4,17 +4,21 @@ import java.util.Objects;
 
 public class Food {
 
+    private FoodType foodType;
     private String foodName;
     private double price;
-    private boolean vegetarian;
     private String vendor;
 
     private final double MAX_ERROR = 0.000001;
 
-    public Food(String foodName, double price, boolean vegetarian, String vendor) {
+    public Food(FoodType foodType) {
+        this.foodType = foodType;
+    }
+
+    public Food(FoodType foodType, String foodName, double price, String vendor) {
+        this.foodType = foodType;
         this.foodName = foodName;
         this.price = price;
-        this.vegetarian = vegetarian;
         this.vendor = vendor;
     }
 
@@ -34,20 +38,20 @@ public class Food {
         this.price = price;
     }
 
-    public boolean isVegetarian() {
-        return vegetarian;
-    }
-
-    public void setVegetarian(boolean vegetarian) {
-        this.vegetarian = vegetarian;
-    }
-
     public String getVendor() {
         return vendor;
     }
 
     public void setVendor(String vendor) {
         this.vendor = vendor;
+    }
+
+    public FoodType getFoodType() {
+        return foodType;
+    }
+
+    public void setFoodType(FoodType foodType) {
+        this.foodType = foodType;
     }
 
     /**
@@ -57,8 +61,8 @@ public class Food {
     public boolean isEqual(Food food) {
         return  food.getFoodName().equals(this.foodName) &&
                 Math.abs(food.getPrice() - this.price) <= this.MAX_ERROR &&
-                food.isVegetarian() == this.vegetarian &&
-                food.getVendor().equals(this.vendor);
+                food.getVendor().equals(this.vendor) &&
+                food.getFoodType().equals(this.foodType);
     }
 
     @Override
@@ -71,6 +75,7 @@ public class Food {
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.foodName, this.price, this.vegetarian, this.vendor);
+        return Objects.hash(this.foodName, this.price, this.vendor, this.foodType);
     }
+
 }

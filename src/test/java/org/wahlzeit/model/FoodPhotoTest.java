@@ -7,7 +7,8 @@ public class FoodPhotoTest {
 
     @Test
     public void testCreateFoodPhoto() {
-        Food testFood = new Food("Kartoffel", 1.0, true, "Edeka");
+        FoodType type = new FoodType("Gemüse", true);
+        Food testFood = new Food(type, "Karotte", 1.0, "Edeka");
 
         FoodPhoto testPhoto= new FoodPhoto(testFood);
 
