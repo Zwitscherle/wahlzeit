@@ -5,6 +5,13 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
+
+/*
+FoodType Objekt Erstellung von FoodManager aus:
+    1. createOrGetFoodType Methode im FoodManager wird aufgerufen
+    2. FoodType Constructor wird aufgerufen und Objekt erstellt, sofern nicht schon im FoodManager vorhanden
+    3. Objekt wird im FoodManager registriert
+*/
 public class FoodType {
 
     private static FoodManager manager = FoodManager.getInstance();

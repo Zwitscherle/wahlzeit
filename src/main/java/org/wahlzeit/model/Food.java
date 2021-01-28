@@ -2,6 +2,13 @@ package org.wahlzeit.model;
 
 import java.util.Objects;
 
+/*
+Food Objekt Erstellung von FoodManager aus:
+    1. createFood Methode im FoodManager wird aufgerufen
+    2. createInstance Methode im zugehörigen FoodType wird aufgerufen
+    3. Food Constructor wird aufgerufen und Objekt erstellt
+    4. Objekt wird im FoodManager registriert
+*/
 public class Food {
 
     private FoodType foodType;
