@@ -7,9 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-/*
-    Der FoodPhotoFactory Singleton wird zu Beginn initalisiert und ist für die Erstellung aller FoodPhotos zuständig.
- */
 @PatternInstance(
         patternNames = {"Abstract Factory", "Singleton"},
         participants = {"Concrete Factory", "Singleton"}

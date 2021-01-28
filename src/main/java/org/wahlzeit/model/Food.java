@@ -3,11 +3,21 @@ package org.wahlzeit.model;
 import java.util.Objects;
 
 /*
-Food Objekt Erstellung von FoodManager aus:
-    1. createFood Methode im FoodManager wird aufgerufen
-    2. createInstance Methode im zugehörigen FoodType wird aufgerufen
-    3. Food Constructor wird aufgerufen und Objekt erstellt
-    4. Objekt wird im FoodManager registriert
+Food object creation starting from FoodManager:
+    1. CreateFood methode in the FoodManager is called
+    2. CreateInstance methode with the corresponding FoodType is called
+    3. Food constructor is called and the Food object gets created
+    4. Object gets registered in the FoodManager Cache
+
+The object creation as a point in the solution space:
+    1. Delegation of Object Creation: separate-object (Through FoodType and FoodManager).
+    2. Selection of Concrete Class: On-the-spot has its own hard coded constructor
+    3. Configuration of Class Mapping: In-code (no special configuration)
+    4. Instantiation of Concrete Class: By-class-object, there is a FoodType object which creates the Concrete Class
+    (does not match perfectly, because th Food class is still the same, but I think this is more reasonable than in-code)
+    5. Initialization of New Object: Default, fixed field assignment in constructor
+    6. Building of Object Structure: Default, New object creates dependent object structure
+    (Maybe also a bit By-building regarding the FoodType, which has to be created beforehand)
 */
 public class Food {
 

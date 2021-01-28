@@ -7,10 +7,19 @@ import java.util.Set;
 
 
 /*
-FoodType Objekt Erstellung von FoodManager aus:
-    1. createOrGetFoodType Methode im FoodManager wird aufgerufen
-    2. FoodType Constructor wird aufgerufen und Objekt erstellt, sofern nicht schon im FoodManager vorhanden
-    3. Objekt wird im FoodManager registriert
+FoodType objects creation starting from FoodManager:
+    1. CreateOrGetFoodType method is called in FoodManger Singleton
+    2. FoodType constructor is called and the object gets created, if it does not exist in the FoodManager yet
+    3. Created Object gets registered in the FoodManager Cache
+
+The object creation as a point in the solution space:
+    1. Delegation of Object Creation: separate-object (Through FoodManager).
+    2. Selection of Concrete Class: On-the-spot has its own hard coded constructor
+    3. Configuration of Class Mapping: In-code (no special configuration)
+    4. Instantiation of Concrete Class: In-code (Constructor is called by the manager)
+    5. Initialization of New Object: Default, fixed field assignment in constructor.
+    Client-specific initialization can be done later (for the type hierarchy)
+    6. Building of Object Structure: Default, New object creates dependent object structure
 */
 public class FoodType {
 

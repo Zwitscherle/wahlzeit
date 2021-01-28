@@ -7,9 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-/*
-    Singleton wird zu Beginn initalisiert, verwaltet alle Food und FoodType Objekte.
-*/
 public class FoodManager extends ObjectManager {
 
     // FoodManager as Singleton

@@ -6,14 +6,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /*
-Ich beschreibe hier den eigentlichen Objekterstellungsablauf, insofern alle Teile vollständig ausprogrammiert wären.
-Food Objekt Erstellung von FoodManager aus:
-        1. FoodPhotoManager wird aufgerufen, hier createPhoto der Parent Klasse (PhotoManager)
-        2. Von dort wird über PhotoUtils die FoodPhotoFactory aufgerufen
-        3. Hier wird der Constructor von FoodPhoto aufgerufen
-        (zuvor müsste gegebenenfalls noch über den FoodManager das dazugehörige Food und FoodType Objekt erstellt werden.
-        Dies ist hier aber in Wahlzeit, da auch in der UI nicht verfügbar aktuell nicht umgesetzt.)
-        4. FoodPhoto wird im PhotoCache hinterlegt
+I will describe the object creation process, if everything would be fully implemented.
+(client based food creation from ui, which is currently not part of wahlzeit)
+Food object creation from FoodManager:
+    1. FoodPhotoManager is called, and the createPhoto method is executed (from parent class PhotoManager)
+    2. In createPhoto from PhotoManager the PhotoUtils createPhoto method will be called
+    3. In PhotoUtils the FoodPhotoFactory createPhoto method is called
+    4. Here finally the FoodPhoto constructor is called, which also uses parts of the Photo constructor (which is the parent class of FoodPhoto)
+    (For a full implementation we also would need to create the corresponding Food object of the FoodPhoto class.
+    Which would most likely also be done via the FoodManager, but this is currently not implemented in wahlzeit)
+    5. After that the FoodPhoto object will be saved in the PhotoCache of the FoodPhotoManager
+
+The object creation as a point in the solution space:
+    1. Delegation of Object Creation: separate-object (FoodPhotoFactory).
+    2. Selection of Concrete Class: By-subclassing (extends the Photo object).
+    3. Configuration of Class Mapping: In-code (no special configuration)
+    4. Instantiation of Concrete Class: In-code (Constructor is called by a Factory)
+    5. Initialization of New Object: Default, fixed field assignment in constructor
+    6. Building of Object Structure: Default, New object creates dependent object structure(like ids),
+    (Maybe also a bit By-building regarding the food object, which has to be created beforehand)
 */
 @PatternInstance(
         patternNames = {"Abstract Factory"},
