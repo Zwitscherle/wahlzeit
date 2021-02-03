@@ -23,6 +23,14 @@ The object creation as a point in the solution space:
 */
 public class FoodType {
 
+    /**
+     * Food/FoodType Collaboration (no specific attribute here):
+     * - Description/Purpose:
+     *   FlowerType provides information common to all instances of a FoodType
+     * - Role: Type Object, Service for Food
+     * - Binds: FoodType with Food
+     */
+
     private static FoodManager manager = FoodManager.getInstance();
     // type specific fields
     private String typeName;

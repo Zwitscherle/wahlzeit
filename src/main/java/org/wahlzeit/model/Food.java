@@ -21,6 +21,21 @@ The object creation as a point in the solution space:
 */
 public class Food {
 
+    /**
+     * Collaboration Food/FoodPhoto (no attribute here):
+     * - Description/Purpose:
+     *   Provides specific information about the FoodPhoto content
+     * - Role: Service
+     * - Binds: Food with FoodPhoto
+     */
+
+    /**
+     * Food/FoodType Collaboration:
+     * - Description/Purpose:
+     *   Has knowledge to which FoodType an Instance belongs
+     * - Role: Base Object
+     * - Binds: Food with a certain FoodType
+    */
     private FoodType foodType;
     private String foodName;
     private double price;

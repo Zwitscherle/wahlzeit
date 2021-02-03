@@ -29,6 +29,15 @@ import org.wahlzeit.utils.*;
 /**
  * A photo represents a user-provided (uploaded) photo.
  */
+/**
+ *  Collaboration Photo/FoodPhoto:
+ *  - Description/Purpose:
+ *    Provides common functionality to an arbitrary number of Photo child classes.
+ *    Children can extend Photo with additional functionality, as Information about the
+ *    Photo content in this case.
+ *  - Role: Parent of Photo
+ *  - Binds: Photo with FoodPhoto
+ */
 @PatternInstance(
 		patternNames = {"Abstract Factory"},
 		participants = {"AbstractProduct", "ConcreteProduct"}
