@@ -24,7 +24,8 @@ The object creation as a point in the solution space:
 public class FoodType {
 
     /**
-     * Food/FoodType Collaboration (no specific attribute here):
+     * (FoodType has a Hierarchy Collaboration to itself)
+     * Food/FoodType Collaboration (Client-Service Collaboration) (no specific attribute here):
      * - Description/Purpose:
      *   FlowerType provides information common to all instances of a FoodType
      * - Role: Type Object, Service for Food

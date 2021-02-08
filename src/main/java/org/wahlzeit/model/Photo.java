@@ -30,12 +30,12 @@ import org.wahlzeit.utils.*;
  * A photo represents a user-provided (uploaded) photo.
  */
 /**
- *  Collaboration Photo/FoodPhoto:
+ *  Collaboration Photo/FoodPhoto (Hierarchy-Collaboration):
  *  - Description/Purpose:
  *    Provides common functionality to an arbitrary number of Photo child classes.
  *    Children can extend Photo with additional functionality, as Information about the
  *    Photo content in this case.
- *  - Role: Parent of Photo
+ *  - Role: Parent of FoodPhoto
  *  - Binds: Photo with FoodPhoto
  */
 @PatternInstance(

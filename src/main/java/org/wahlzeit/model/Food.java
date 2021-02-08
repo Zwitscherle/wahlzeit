@@ -22,7 +22,7 @@ The object creation as a point in the solution space:
 public class Food {
 
     /**
-     * Collaboration Food/FoodPhoto (no attribute here):
+     * Collaboration Food/FoodPhoto (Client-Service Collaboration) (no attribute here):
      * - Description/Purpose:
      *   Provides specific information about the FoodPhoto content
      * - Role: Service
@@ -30,7 +30,7 @@ public class Food {
      */
 
     /**
-     * Food/FoodType Collaboration:
+     * Food/FoodType Collaboration (Client-Service Collaboration):
      * - Description/Purpose:
      *   Has knowledge to which FoodType an Instance belongs
      * - Role: Base Object
